@@ -363,7 +363,7 @@ d3.select("body").append("div")
 	"Defaults here are typical US per-capita values, but modify them to see how you might be affected. More information may be found on my blog post." + 
 	"<p>" +
 	"Created by Jacob Lynn. See " + 
-	"<a href=\"\">GitHub repo</a> for commit history.")
+	"<a href=\"https://github.com/abeboparebop/carbon-dividend\">GitHub repo</a> for commit history.")
 
 function restoreDefaults(init) {
   init = typeof init !== 'undefined' ? init : false;
