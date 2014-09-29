@@ -113,3 +113,18 @@ path {
   /* .attr("rx",10).attr("ry",10) */
   /* .attr("opacity",1.0) */
 }
+
+
+.boxRect {
+    fill: #eee;
+    opacity:0.5;
+    /* stroke: #099; */
+}
+
+.boxTitle {
+    font-size: 17;
+}
+
+.boxText {
+    font-size: 12;
+}

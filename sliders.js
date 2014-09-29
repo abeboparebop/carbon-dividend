@@ -74,8 +74,8 @@ var sliders = [
     dom: [1.5, 3.3],
     val: constants.foodCarbonIntensity,
     def: constants.foodCarbonIntensity*1.,
-    vOff: 0.0,
-    hOff: 2.0,
+    vOff: 2.0,
+    hOff: 0.0,
     nPlaces: 1,
     dragmove: function (newVal) {
       constants.foodCarbonIntensity = newVal;
@@ -113,8 +113,8 @@ var sliders = [
     dom: [1e9, 10e9],
     val: constants.USEmissions,
     def: constants.USEmissions*1.,
-    vOff: 1.0,
-    hOff: 2.0,
+    vOff: 2.0,
+    hOff: 1.0,
     nPlaces: 1,
     dragmove: function (newVal) {
       constants.USEmissions = newVal;

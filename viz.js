@@ -1,13 +1,13 @@
 //Create the SVG Viewport
 var m = [80,80,80,120];
 var w = 825 - m[1] - m[3];
-var h = 650 - m[0] - m[2];
+var h = 750 - m[0] - m[2];
 var h0 = 400;
 var axSpc = 150;
 var axHt = 150;
 var axAdj = 15;
 var contSpc = 90;
-var contAlign = 15;
+var contAlign = -30;
 var sWd = 150;
 var sPad = 50;
 var sHt = 100;
@@ -305,7 +305,7 @@ function dragmove(d) {
 buttonHt = 40;
 buttonWd = sWd;
 defaultsObj = contContainer.append("g")
-  .attr("transform", "translate(" + (1.0*(sWd+sPad) + 0.5*buttonWd) + "," + (buttonHt + 2.0 * (sHt)) + ")")
+  .attr("transform", "translate(" + (0.5*(sWd+sPad) + 0.5*buttonWd) + "," + (buttonHt + 3.0 * (sHt)) + ")")
   .on("mouseover", function() {
     d3.selectAll(this.childNodes)
       .classed("active",true);
@@ -330,6 +330,40 @@ defaultsObj.append("text")
   // .attr("transform", function(d) {return "translate(" + (-axAdj) + ",-20)"})
   .style("text-anchor","middle")
   .attr("dy",".3em")
+
+boxHt = 350;
+boxWd = 300;
+boxObj = contContainer.append("g")
+  .attr("transform", "translate(" + (2.0*(sWd+sPad) + 0.5*boxWd) + "," + 0.5*(boxHt) + ")")
+
+boxObj.append("rect")
+  .attr("width",boxWd).attr("height",boxHt)
+  .attr("x",-boxWd/2).attr("y",-boxHt/2)
+  .attr("rx", 20).attr("ry",20)
+  .attr("class","boxRect")
+boxObj.append("text")
+  .attr("class","boxTitle")
+  .text("Carbon Dividend Calculator")
+  // .attr("transform", function(d) {return "translate(" + (-axAdj) + ",-20)"})
+  .style("text-anchor","middle")
+  .attr("y",-boxHt/2+30)
+
+d3.select("body").append("div")
+  .style("position","absolute")
+  .style("left", (2.0*(sWd+sPad)) +m[3])
+  .style("width", boxWd - 30)
+  .style("top", axHt + contSpc + m[0] + 60)
+  .style("height", boxHt - 70)
+  .append("div")
+  .attr("class","boxText")
+  .html("This calculator explores what would happen if the U.S. were to impose a carbon tax on CO2 and equivalent heat-trapping emissions, and to redistribute that tax back to U.S. citizens as a \"carbon dividend.\"" +
+	"<p>" +
+	"Various consumer goods (like gas, electricity, and food) would cost more, but for light users of non-renewables, the dividend would outweigh the additional costs." +
+	"<p>" +
+	"Defaults here are typical US per-capita values, but modify them to see how you might be affected. More information may be found on my blog post." + 
+	"<p>" +
+	"Created by Jacob Lynn. See " + 
+	"<a href=\"\">GitHub repo</a> for commit history.")
 
 function restoreDefaults(init) {
   init = typeof init !== 'undefined' ? init : false;
