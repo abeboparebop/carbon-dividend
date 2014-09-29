@@ -1,3 +1,7 @@
+* {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
 path {
     /* stroke: #; */
     stroke: black;
@@ -60,30 +64,24 @@ path {
 }
 
 .tick {
-    font-family: "Verdana";
     font-size: 11;
 }
 
 .axisTitle {
-    font-family: "Verdana";
     font-size: 13;
 }
 .axisUnit {
-    font-family: "Verdana";
     font-size: 14;
 }
 
 .sliderTitle {
-    font-family: "Verdana";
     font-size: 13;
 }
 .sliderVal {
-    font-family: "Verdana";
     font-size: 14;
 }
 
 .restoreText {
-    font-family: "Verdana";
     font-size:13;
     cursor:default;
 }
