@@ -63,8 +63,9 @@ var contContainer = svg.append("g")
   .attr("transform", "translate(" + String(m[3] + contAlign) + "," + String(m[0] + axHt + contSpc) + ")")
   .attr("height", h0);
 
-function drawAxes(init) {
+function drawAxes(init, smooth) {
   init = typeof init !== 'undefined' ? init : false;
+  smooth = typeof smooth !== 'undefined' ? smooth : false;
   for (var i=0; i < costs.length; i++) {
     el = costs[i];
     var axisScale = d3.scale.linear()
@@ -97,8 +98,16 @@ function drawAxes(init) {
 	.attr("transform", function(d) {return "translate(" + (-axAdj) + "," + (axHt+30) + ")"})
 	.style("text-anchor","middle")
     } else {
-      axis = axesContainer.select('#'+tag)
-	.call(yAxis)
+
+      if (smooth) {
+	var axis = axesContainer.select('#'+tag)
+	  .transition()
+	  .call(yAxis)
+      } else {
+	var axis = axesContainer.select('#'+tag)
+	  .call(yAxis)
+      }
+
       axis.select(".axisUnit")
 	.text(valToText(el, el.fcn(constants.scc)))
     }
@@ -187,6 +196,13 @@ function drawAxes(init) {
   //   sccAxis = axesContainer.select("scc_dragger")
   //     .attr("transform", "translate(0," + (lineHt) + ")")
   // }
+  else if (smooth) {
+    sccTag = "#scc_scale"
+    lineHt = sccScale(constants.scc)
+    axesContainer.select(".scc_dragger")
+      .transition()
+      .attr("transform", "translate(0," + (lineHt) + ")")
+  }
 }
 
 function drawSliders() {
@@ -323,8 +339,9 @@ function restoreDefaults(init) {
   for (var i=0; i<sliders.length; i++) {
     sliders[i].val = sliders[i].def*1.;
   }
-  drawAxes(init);
+  drawAxes(init, true);
   updateSliderVals();
   sliderAxes.selectAll('.sliderDragger')
+    .transition()
     .attr("transform", function(d) {return "translate(" + d.controllerScale(d.val) + ",0)";})
 }
